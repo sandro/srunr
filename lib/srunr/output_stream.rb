@@ -7,7 +7,7 @@ module Srunr
     end
 
     def noop(m, *args)
-      $stderr.puts ["no-op called", args].inspect
+      $stderr.puts ["no-op called", m, args].inspect
     end
 
     def puts(*args)

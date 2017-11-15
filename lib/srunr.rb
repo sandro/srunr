@@ -3,6 +3,7 @@ require "srunr/version"
 module Srunr
   autoload :Cli, "srunr/cli"
   autoload :CommandParser, "srunr/cli"
+  autoload :Configuration, "srunr/configuration"
   autoload :Loader, "srunr/loader"
   autoload :Runner, "srunr/runner"
   autoload :RSpecFormatter, "srunr/rspec_formatter"
@@ -23,5 +24,13 @@ module Srunr
     yield
   ensure
     $stderr.puts "#{location} completed in #{Time.now - start_time}s"
+  end
+
+  def self.configuration
+    @configuration ||= Configuration.new
+  end
+
+  def self.configuration=(v)
+    @configuration = v
   end
 end

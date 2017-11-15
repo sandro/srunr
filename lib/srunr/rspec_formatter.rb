@@ -13,6 +13,8 @@ module Srunr
     def close(_notification=nil)
       $stderr.puts "close called #{@output_hash.object_id}"
       @output_hash[:examples].each do |e|
+        e[:hostname] = Srunr.configuration.hostname
+        e[:worker_number] = 1
         @output.report_test(Marshal.dump(e).force_encoding("UTF-8"))
       end
       $stdout.puts "NEXT_TEST"

@@ -1,7 +1,8 @@
 module Srunr
   class CommandParser
     COMMANDS = {
-      run_test: :run_test
+      run_test: :run_test,
+      hostname: :hostname
     }
 
     def initialize
@@ -26,6 +27,18 @@ module Srunr
     def run_test(*args)
       $stdout.puts "running test #{args}"
       @runner.run_test(args)
+    end
+
+    def hostname(name)
+      Srunr.configuration.hostname = name
+    end
+
+    def before_suite(*args)
+      @runner.before_suite
+    end
+
+    def after_suite(*args)
+      @runner.after_suite
     end
   end
 
